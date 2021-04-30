@@ -1,0 +1,13 @@
+{
+    "version": 3,
+    "sources": [
+        "../webpack:/dump-bundled-packages/src/main.ts",
+        "../webpack:/dump-bundled-packages/src/searchfile.ts",
+        "../webpack:/dump-bundled-packages/src/sourcemap.ts",
+        "../webpack:/dump-bundled-packages/external \"fs/promises\"",
+        "../webpack:/dump-bundled-packages/external \"path\"",
+        "../webpack:/dump-bundled-packages/webpack/bootstrap",
+        "../webpack:/dump-bundled-packages/webpack/runtime/compat",
+        "../webpack:/dump-bundled-packages/webpack/startup"
+    ]
+}
