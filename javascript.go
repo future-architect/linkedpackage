@@ -190,7 +190,21 @@ func projectJSConfigReader(module *Module, root string) error {
 
 	l, ok := j["license"]
 	if !ok {
-		module.LicenseName = "no license"
+		if ls, ok := j["licenses"]; ok {
+			var licenses []string
+			for _, l := range ls.([]interface{}) {
+				if ln, ok := l.(string); ok {
+					licenses = append(licenses, ln)
+				} else if lo, ok := l.(map[string]interface{}); ok {
+					if ln, ok := lo["type"].(string); ok {
+						licenses = append(licenses, ln)
+					}
+				}
+			}
+			module.LicenseName = strings.Join(licenses, ", ")
+		} else {
+			module.LicenseName = "no license"
+		}
 	} else {
 		lname, ok := l.(string)
 		if !ok {

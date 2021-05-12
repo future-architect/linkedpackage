@@ -3,6 +3,8 @@ package linkedpackage
 import (
 	"reflect"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 /*func TestParseJSSourcemapFile(t *testing.T) {
@@ -383,15 +385,34 @@ func Test_projectJSConfigReader(t *testing.T) {
 			},
 			wantErr: false,
 		},
+		{
+			name: "read package.json with complex licenses",
+			args: args{
+				module: &Module{
+					Lang: "js",
+					Name: "sample3",
+					Path: "sample3",
+				},
+				root: "testdata/license",
+			},
+			want:    &Module{
+				Lang: "js",
+				Name: "sample3",
+				Path: "sample3",
+				Author: "Kris Zyp",
+				LicenseName: "AFLv2.1, BSD",
+				LicenseContent: "",
+				Version: "0.2.3",
+			},
+			wantErr: false,
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			if err := projectJSConfigReader(tt.args.module, tt.args.root); (err != nil) != tt.wantErr {
 				t.Errorf("projectJSConfigReader() error = %v, wantErr %v", err, tt.wantErr)
 			}
-			if !reflect.DeepEqual(tt.args.module, tt.want) {
-				t.Errorf("ParseJSWebPack() got = %v, want %v", tt.args.module, tt.want)
-			}
+			assert.Equal(t, tt.want, tt.args.module)
 		})
 	}
 }

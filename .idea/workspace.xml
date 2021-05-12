@@ -2,6 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9a025b33-4f0b-4aa5-92bd-095cf472185a" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/testdata/license/sample3/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript.go" beforeDir="false" afterPath="$PROJECT_DIR$/javascript.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/javascript_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/module.go" beforeDir="false" afterPath="$PROJECT_DIR$/module.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/module_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/module_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/testdata/vue-project" beforeDir="false" afterPath="$PROJECT_DIR$/testdata/vue-project" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/testdata/vue-project/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/testdata/vue-project/package.json" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -19,7 +29,7 @@
   </component>
   <component name="GOROOT" path="$USER_HOME$/.goenv/versions/1.14.4" />
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/testdata/vue-project" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GoLibraries">
     <option name="indexEntireGoPath" value="false" />
@@ -61,7 +71,18 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Go Test.TestParseAuditReport in github.com/future-architect/linkedpackage/npmaudit">
+  <component name="RunManager" selected="Go Test.Test_projectJSConfigReader in github.com/future-architect/linkedpackage">
+    <configuration name="TestExtractLicenseFromReadme in github.com/future-architect/linkedpackage" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="linkedpackage" />
+      <working_directory value="$PROJECT_DIR$" />
+      <framework value="gotest" />
+      <kind value="PACKAGE" />
+      <package value="github.com/future-architect/linkedpackage" />
+      <directory value="$PROJECT_DIR$/" />
+      <filePath value="$PROJECT_DIR$/" />
+      <pattern value="^TestExtractLicenseFromReadme$" />
+      <method v="2" />
+    </configuration>
     <configuration name="TestGroupingModuleByLicense in github.com/future-architect/linkedpackage" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="linkedpackage" />
       <working_directory value="$PROJECT_DIR$" />
@@ -82,17 +103,6 @@
       <directory value="$PROJECT_DIR$/" />
       <filePath value="$PROJECT_DIR$/" />
       <pattern value="^TestParseAuditReport$" />
-      <method v="2" />
-    </configuration>
-    <configuration name="TestParseJSWebPack in github.com/future-architect/linkedpackage" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
-      <module name="linkedpackage" />
-      <working_directory value="$PROJECT_DIR$" />
-      <framework value="gotest" />
-      <kind value="PACKAGE" />
-      <package value="github.com/future-architect/linkedpackage" />
-      <directory value="$PROJECT_DIR$/" />
-      <filePath value="$PROJECT_DIR$/" />
-      <pattern value="^TestParseJSWebPack$" />
       <method v="2" />
     </configuration>
     <configuration name="TestUniqueModules in github.com/future-architect/linkedpackage" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
@@ -119,11 +129,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Go Test.Test_projectJSConfigReader in github.com/future-architect/linkedpackage" />
+        <item itemvalue="Go Test.TestExtractLicenseFromReadme in github.com/future-architect/linkedpackage" />
         <item itemvalue="Go Test.TestParseAuditReport in github.com/future-architect/linkedpackage/npmaudit" />
         <item itemvalue="Go Test.TestGroupingModuleByLicense in github.com/future-architect/linkedpackage" />
-        <item itemvalue="Go Test.Test_projectJSConfigReader in github.com/future-architect/linkedpackage" />
         <item itemvalue="Go Test.TestUniqueModules in github.com/future-architect/linkedpackage" />
-        <item itemvalue="Go Test.TestParseJSWebPack in github.com/future-architect/linkedpackage" />
       </list>
     </recent_temporary>
   </component>
