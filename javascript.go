@@ -43,6 +43,35 @@ func ParseJSSourcemapFile(path string) ([]Module, error) {
 				modulePath = modulePath[i:]
 				modulePath = strings.TrimPrefix(modulePath, "/.")
 			}
+		} else if strings.HasPrefix(source, "webpack://_N_E/ignored|") {
+			// process "webpack://_N_E/ignored|/Users/shibu/develop/linkedpackage/testdata/next-project/node_modules/next/dist/shared/lib/router|./utils/resolve-rewrites"
+			modulePath = strings.TrimPrefix(source, "webpack://_N_E/ignored|")
+			dir, child, ok := strings.Cut(modulePath, "|")
+			if ok {
+				modulePath = filepath.Join(dir, child)
+			}
+			if filepath.IsAbs(modulePath) {
+				root, err := filepath.Abs(path)
+				if err != nil {
+					return nil, err
+				}
+				modulePath, err = filepath.Rel(root, modulePath)
+				if err != nil {
+					return nil, err
+				}
+				if strings.Contains(modulePath, "node_modules") {
+					result := strings.SplitN(modulePath, "node_modules", 2)
+					if len(result) == 2 {
+						modulePath = "/" + result[1]
+					}
+				}
+				if !strings.HasSuffix(modulePath, ".js") {
+					modulePath = modulePath + ".js"
+				}
+			}
+		} else if strings.HasPrefix(source, "webpack://_N_E/") {
+			// process "webpack://_N_E/./node_modules/next/dist/shared/lib/side-effect.js"
+			modulePath = strings.TrimPrefix(source, "webpack://_N_E/")
 		}
 		modules := parseJSModulePaths(modulePath)
 		for _, module := range modules {
@@ -244,7 +273,7 @@ func projectJSParseAuthor(content map[string]interface{}) (string, error) {
 	}
 	name, ok := content["name"]
 	if !ok {
-		return "",  errors.New("not implemented")
+		return "", errors.New("not implemented")
 	}
 	return name.(string) + " authors", nil
 }

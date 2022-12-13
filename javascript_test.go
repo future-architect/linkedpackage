@@ -353,14 +353,14 @@ func Test_projectJSConfigReader(t *testing.T) {
 				},
 				root: "testdata/license",
 			},
-			want:    &Module{
-				Lang: "js",
-				Name: "sample1",
-				Path: "sample1",
-				Author: "abc",
-				LicenseName: "MIT",
+			want: &Module{
+				Lang:           "js",
+				Name:           "sample1",
+				Path:           "sample1",
+				Author:         "abc",
+				LicenseName:    "MIT",
 				LicenseContent: "MIT",
-				Version: "1.0.0",
+				Version:        "1.0.0",
 			},
 			wantErr: false,
 		},
@@ -374,14 +374,14 @@ func Test_projectJSConfigReader(t *testing.T) {
 				},
 				root: "testdata/license",
 			},
-			want:    &Module{
-				Lang: "js",
-				Name: "sample2",
-				Path: "sample2",
-				Author: "abc <abc@example.com>",
-				LicenseName: "MIT",
+			want: &Module{
+				Lang:           "js",
+				Name:           "sample2",
+				Path:           "sample2",
+				Author:         "abc <abc@example.com>",
+				LicenseName:    "MIT",
 				LicenseContent: "MIT",
-				Version: "1.0.0",
+				Version:        "1.0.0",
 			},
 			wantErr: false,
 		},
@@ -395,14 +395,14 @@ func Test_projectJSConfigReader(t *testing.T) {
 				},
 				root: "testdata/license",
 			},
-			want:    &Module{
-				Lang: "js",
-				Name: "sample3",
-				Path: "sample3",
-				Author: "Kris Zyp",
-				LicenseName: "AFLv2.1, BSD",
+			want: &Module{
+				Lang:           "js",
+				Name:           "sample3",
+				Path:           "sample3",
+				Author:         "Kris Zyp",
+				LicenseName:    "AFLv2.1, BSD",
 				LicenseContent: "",
-				Version: "0.2.3",
+				Version:        "0.2.3",
 			},
 			wantErr: false,
 		},
@@ -413,6 +413,74 @@ func Test_projectJSConfigReader(t *testing.T) {
 				t.Errorf("projectJSConfigReader() error = %v, wantErr %v", err, tt.wantErr)
 			}
 			assert.Equal(t, tt.want, tt.args.module)
+		})
+	}
+}
+
+func TestParseNextJS(t *testing.T) {
+	type args struct {
+		path string
+	}
+	tests := []struct {
+		name    string
+		args    args
+		want    []Module
+		wantErr bool
+	}{
+		{
+			name: "next export's output",
+			args: args{
+				path: "testdata/next-project/out/_next/static/chunks/main-2342a24ee1b9aac8.js.map",
+			},
+			want: []Module{
+				{
+					Lang: "js",
+					Name: "@swc/helpers",
+					Path: "/node_modules/@swc/helpers",
+				},
+				{
+					Lang: "js",
+					Name: "next",
+					Path: "/node_modules/next",
+				},
+			},
+			wantErr: false,
+		},
+		{
+			name: "next build's export",
+			args: args{
+				path: "testdata/next-project/.next/static/chunks/framework-e8847d4231ba5030.js.map",
+			},
+			want: []Module{
+				{
+					Lang: "js",
+					Name: "react",
+					Path: "/node_modules/react",
+				},
+				{
+					Lang: "js",
+					Name: "react-dom",
+					Path: "/node_modules/react-dom",
+				},
+				{
+					Lang: "js",
+					Name: "scheduler",
+					Path: "/node_modules/scheduler",
+				},
+			},
+			wantErr: false,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			got, err := ParseJSSourcemapFile(tt.args.path)
+			if (err != nil) != tt.wantErr {
+				t.Errorf("ParseJSSourcemapFile() error = %v, wantErr %v", err, tt.wantErr)
+				return
+			}
+			if !assert.Equal(t, tt.want, got) {
+				t.Errorf("ParseJSSourcemapFile() got = %v, want %v", got, tt.want)
+			}
 		})
 	}
 }
